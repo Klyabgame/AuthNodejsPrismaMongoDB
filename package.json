@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nodemon",
     "build": "rimraf ./dist && tsc",
-    "start": "npm run build && node dist/app.js"
+    "start2": "npm run build && node dist/app.js",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -41,7 +42,7 @@
     "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.11",
+    "tsconfig-paths": "^4.2.0",
     "uuid": "^9.0.1"
-    
   }
 }

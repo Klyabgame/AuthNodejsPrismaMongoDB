@@ -1,9 +1,7 @@
+import { bcryptAdapter, envs, jwtAdapter, prisma } from "@/config";
+import { AuthDatasource, AuthEntity, CreateAuthDto, CustomError, LoginAuthDto } from "@/domain";
+import { EmailService } from "@/presentation/services/email.service";
 
-import { bcryptAdapter, envs, jwtAdapter, prisma } from "../../config";
-import { AuthEntity, CustomError, LoginAuthDto } from "../../domain";
-import { AuthDatasource } from "../../domain/datasource/auth.datasource";
-import { CreateAuthDto } from "../../domain/dtos/auth/create-auth.dto";
-import { EmailService } from "../../presentation/services/email.service";
 
 export class AuthDatasourceImpl implements AuthDatasource{
 

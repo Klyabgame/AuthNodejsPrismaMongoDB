@@ -1,9 +1,10 @@
-import { Router } from "express"
-import { AuthController } from "./controller";
+import { Router } from "express";
 import { EmailService } from "../services/email.service";
-import { envs } from "../../config";
-import { AuthDatasourceImpl } from "../../infrastructure/datasource/auth.datasource.impl";
-import { AuthRepositoryImpl } from "../../infrastructure/repository/auth.repository.impl";
+import { envs } from "@/config";
+import { AuthDatasourceImpl } from "@/infrastructure/datasource/auth.datasource.impl";
+import { AuthRepositoryImpl } from "@/infrastructure/repository/auth.repository.impl";
+import { AuthController } from "./controller";
+
 
 export class AuthRoutes{
 

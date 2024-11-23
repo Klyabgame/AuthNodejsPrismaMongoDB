@@ -1,7 +1,5 @@
-import { AuthEntity, LoginAuthDto } from "../../domain";
-import { AuthDatasource } from "../../domain/datasource/auth.datasource";
-import { CreateAuthDto } from "../../domain/dtos/auth/create-auth.dto";
-import { AuthRepository } from "../../domain/repository/user.repository";
+import { AuthDatasource, AuthEntity, AuthRepository, CreateAuthDto, LoginAuthDto } from "@/domain";
+
 
 
 export class AuthRepositoryImpl implements AuthRepository{
