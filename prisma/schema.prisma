@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model tb_auth {
+  id_auth        String   @id @default(auto()) @map("_id") @db.ObjectId
+  correo          String   @unique
+  correo_validado Boolean  @default(false)
+  password        String
+  foto_url        String?
+  nombres         String
+  apellidos       String
+  telefono        String?  @db.String
+}
+

@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mongo1:
+    image: mongo:6.0
+    container_name: mongo1
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_REPLICA_SET_NAME: rs0
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo1_data:/data/db
+
+  mongo2:
+    image: mongo:6.0
+    container_name: mongo2
+    environment:
+      MONGO_REPLICA_SET_NAME: rs0
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo2_data:/data/db
+
+  mongo3:
+    image: mongo:6.0
+    container_name: mongo3
+    environment:
+      MONGO_REPLICA_SET_NAME: rs0
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo3_data:/data/db
+
+  mongo-init-replica:
+    image: mongo:6.0
+    depends_on:
+      - mongo1
+      - mongo2
+      - mongo3
+    entrypoint: >
+      bash -c "
+      sleep 5;
+      mongosh --host mongo1:27017 <<EOF
+        rs.initiate({
+          _id: 'rs0',
+          members: [
+            { _id: 0, host: 'mongo1:27017' },
+            { _id: 1, host: 'mongo2:27017' },
+            { _id: 2, host: 'mongo3:27017' }
+          ]
+        });
+        EOF
+      "
+
+volumes:
+  mongo1_data:
+    external: true
+  mongo2_data:
+    external: true
+  mongo3_data:
+    external: true
